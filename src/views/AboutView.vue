@@ -5,6 +5,7 @@ let id = 0;
 
 const newTodo = ref("");
 const hideCompleted = ref(false);
+const html = ref("<button>Cliquez moi!</button>");
 const todos = ref([
   { id: id++, text: "Apprendre le HTML", done: true },
   { id: id++, text: "Apprendre le JavaScript", done: true },
@@ -26,6 +27,8 @@ function removeTodo(todo) {
 </script>
 
 <template>
+  <!-- Pour les failles xss, utiliser v-html -->
+  <div v-html="html"></div>
   <form @submit.prevent="addTodo">
     <input v-model="newTodo" required placeholder="Nouvelle tâche" />
     <button>Ajouter une tâche</button>
